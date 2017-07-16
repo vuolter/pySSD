@@ -22,10 +22,10 @@ Status
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/6ee47c32da944cbcac211ac3ac4ddff2)](https://www.codacy.com/app/vuolter/pySSD?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=vuolter/pySSD&amp;utm_campaign=Badge_Grade)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/vuolter/pySSD/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/vuolter/pySSD/?branch=master)
 
-[![PyPI Status](https://img.shields.io/pypi/status/pySSD.svg)](https://pypi.python.org/pypi/ssd)
-[![PyPI Version](https://img.shields.io/pypi/v/pySSD.svg)](https://pypi.python.org/pypi/ssd)
-[![PyPI Python Versions](https://img.shields.io/pypi/pyversions/pySSD.svg)](https://pypi.python.org/pypi/ssd)
-[![PyPI License](https://img.shields.io/pypi/l/pySSD.svg)](https://pypi.python.org/pypi/ssd)
+[![PyPI Status](https://img.shields.io/pypi/status/ssd.svg)](https://pypi.python.org/pypi/ssd)
+[![PyPI Version](https://img.shields.io/pypi/v/ssd.svg)](https://pypi.python.org/pypi/ssd)
+[![PyPI Python Versions](https://img.shields.io/pypi/pyversions/ssd.svg)](https://pypi.python.org/pypi/ssd)
+[![PyPI License](https://img.shields.io/pypi/l/ssd.svg)](https://pypi.python.org/pypi/ssd)
 
 
 Installation
@@ -55,7 +55,7 @@ Import in your script the module `sdd` and call its function `is_ssd`.
 
     is_ssd('/path/to/file-or-dir')
 
-**pySSD** will return `True` if the drive where the given path is located is
+**pySSD** will return `True` if the drive, where the given path is located, is
 recognized as a solid-state drive, otherwise `False`.
 
 _That's All Folks!_

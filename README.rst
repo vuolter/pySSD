@@ -50,8 +50,8 @@ Import in your script the module ``sdd`` and call its function
 
     is_ssd('/path/to/file-or-dir')
 
-**pySSD** will return ``True`` if the drive where the given path is
-located is recognized as a solid-state drive, otherwise ``False``.
+**pySSD** will return ``True`` if the drive, where the given path is
+located, is recognized as a solid-state drive, otherwise ``False``.
 
 *That's All Folks!*
 
