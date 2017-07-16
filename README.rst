@@ -53,7 +53,7 @@ Import in your script the module ``sdd`` and call its function
 **pySSD** will return ``True`` if the drive where the given path is
 located is recognized as a solid-state drive, otherwise ``False``.
 
-*That’s All Folks!*
+*That's All Folks!*
 
 
 .. _Description: #description
