@@ -1,0 +1,78 @@
+language: python
+git:
+  depth: 3
+  lfs_skip_smudge: true
+  submodules: false
+branches:
+  only:
+    - master
+    - /^v\d+\.\d+\.\d+$/
+python:
+  - 2.6
+  - 2.7
+  - 3.3
+  - 3.4
+  - 3.5
+  - 3.6
+  - 3.7-dev
+  - nightly
+  - pypy
+  # - pypy3
+matrix:
+  include:
+    - os: osx
+      language: generic
+      env: TRAVIS_PYTHON_VERSION=2.7
+      python: 2.7
+      before_install: pyenv install $TRAVIS_PYTHON_VERSION
+    - os: osx
+      language: generic
+      env: TRAVIS_PYTHON_VERSION=3.5
+      python: 3.5
+      before_install: pyenv install 3.5.0
+  allow_failures:
+    - os: osx
+    - python: 2.6
+    - python: 3.7-dev
+    - python: nightly
+    - python: pypy
+    # - python: pypy3
+  fast_finish: true
+cache: pip
+install:
+  - pip install -U setuptools
+  - pip install -U tox
+  # - pip install scrutinizer-ocular
+  - pip install tox-travis
+  # - pip install travis-bump-version
+script: tox --skip-missing-interpreters
+after_script:
+  - tox -e check
+  - tox -e dups
+  - tox -e pylint -- -E
+# after_success: ocular
+# before_deploy:
+  # - test $TRAVIS_TEST_RESULT -eq 0
+  # - git fetch --tags
+# deploy:
+  # - provider: pypi
+    # user:
+      # secure: ""
+    # password:
+      # secure: ""
+    # distributions: sdist bdist_wheel
+    # skip_cleanup: true
+    # skip_upload_docs: true
+    # on:
+      # python: 3.5
+      # tags: true
+  # - provider: releases
+    # api-key: ""
+    # file_glob: true
+    # file: dist/*
+    # skip_cleanup: true
+    # on:
+      # python: 3.5
+      # tags: true
+      # all_branches: true
+# after_deploy: travis-bump-version --api-token "" --repo $TRAVIS_REPO_SLUG VERSION
