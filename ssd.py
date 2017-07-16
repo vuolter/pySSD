@@ -3,7 +3,7 @@
 import os
 import sys
 
-from os.path import dirname, ismount, realpath, expanduser, splitdrive
+from os.path import dirname, expanduser, ismount, realpath, splitdrive
 
 
 def _fullpath(path):
@@ -39,6 +39,7 @@ def is_nt_ssd(path):
 
     path = _fullpath(path)
     drive = splitdrive(path)[0].upper()
+
     drivetype = win32file.GetDriveType(drive)
 
     if drivetype == win32file.DRIVE_RAMDISK:
