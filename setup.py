@@ -43,5 +43,6 @@ setup(
         'psutil;os_name!="nt"',
         'pypiwin32>=154;os_name=="nt"',
         'wmi;os_name=="nt"'],
+    setup_requires=['setuptools>=20.8.1'],
     python_requires='>=2.6,!=3.0,!=3.1,!=3.2',
     zip_safe=True)
