@@ -52,7 +52,7 @@ after_script:
 # after_success: ocular
 before_deploy:
   - test $TRAVIS_TEST_RESULT -eq 0
-  # - git fetch --tags
+  - test $TRAVIS_OS_NAME = linux
 deploy:
   - provider: pypi
     user:
@@ -63,7 +63,6 @@ deploy:
     skip_cleanup: true
     skip_upload_docs: true
     on:
-      os: linux
       python: 3.5
       tags: true
   - provider: releases
@@ -73,7 +72,7 @@ deploy:
     file: dist/*
     skip_cleanup: true
     on:
-      os: linux
       python: 3.5
       tags: true
-      # all_branches: true
+      name: "${$TRAVIS_REPO_SLUG#*/} ${$TRAVIS_TAG#v}"
+      body: "## Changelog"
