@@ -1,7 +1,7 @@
 pySSD
 =====
 
-A tiny, but effective, SSD checker for Python.
+A tiny, but effective, Solid-State Drive checker for Python.
 
 Working on Windows, macOS and linux.
 
@@ -49,11 +49,11 @@ If in your system missing the command `pip`, but you're sure you have installed
 the [Python Interpreter](https://www.python.org) and the package `setuptools`
 (>=20.8.1), you can try to install **pySSD** from the sources, in this way:
 
-1. Get the latest _tarball_ of the source code in format
+1. Get the latest tarball of the source code in format
 [ZIP](https://github.com/vuolter/pySSD/archive/master.zip) or
 [TAR](https://github.com/vuolter/pySSD/archive/master.tar.gz).
 2. Extract the downloaded archive.
-3. From the extracted directory path, launch the command
+3. From the extracted path, launch the command
 `python setup.py install`.
 
 
@@ -64,10 +64,12 @@ Import in your script the module `sdd` and call its function `is_ssd`.
 
     from ssd import is_ssd
 
-    is_ssd('/path/to/file-or-dir')
+    is_ssd('/path/to/file-or-dir-or-dev')
 
-**pySSD** will return `True` if the drive, where the given path is located, is
-recognized as a solid-state drive, otherwise `False`.
+Return value will be `True` if the drive, where the given path is located, was
+recognized as SSD, otherwise `False`.
+
+> **Note:** Ramdisks are always recognized as SSD under Windows.
 
 _That's All Folks!_
 
