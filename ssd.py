@@ -60,7 +60,7 @@ def is_nt_ssd(path):
 
         c = wmi.WMI(moniker='//./ROOT/Microsoft/Windows/Storage')
         flag = bool(c.MSFT_PhysicalDisk(DeviceId=str(index[drive]),
-                    MediaType=4))
+                                        MediaType=4))
 
     return flag
 
