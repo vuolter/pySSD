@@ -45,9 +45,9 @@ If the above commands fail, consider installing it with the option
 
     pip install --user ssd
 
-If in your system missing the command `pip`, but you're sure you have installed
-the [Python Interpreter](https://www.python.org) and the package `setuptools`
-(>=20.8.1), you can try to install **pySSD** from the sources, in this way:
+If the command `pip` is not found in your system, but you have the 
+[Python Interpreter](https://www.python.org) and the package `setuptools`
+(>=20.8.1) installed, you can try to install it from the sources, in this way:
 
 1. Get the latest tarball of the source code in format
 [ZIP](https://github.com/vuolter/pySSD/archive/master.zip) or
