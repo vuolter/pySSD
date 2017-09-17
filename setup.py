@@ -1,12 +1,17 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import absolute_import
+
+import codecs
+
 from setuptools import setup
 
 setup(
     name='ssd',
     version=open('VERSION').read().strip(),
     description='Solid-State Drive Checker',
-    long_description=open('README.rst').read(),
+    long_description=codecs.open(
+        'README.rst', encoding='utf-8', errors='ignore').read(),
     keywords='ssd pyssd',
     url='https://github.com/vuolter/pySSD',
     download_url='https://github.com/vuolter/pySSD/releases',
