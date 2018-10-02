@@ -1,9 +1,9 @@
 pySSD
 =====
 
-A tiny, but effective, Solid-State Drive checker for Python.
+Tiny little Solid-State Drive checker for Python.
 
-Working on Windows, macOS and linux.
+Working on Windows, macOS and Linux.
 
 
 Table of contents
@@ -45,7 +45,7 @@ If the above commands fail, consider installing it with the option
 
     pip install --user ssd
 
-If the command `pip` is not found in your system, but you have the 
+If the command `pip` is not found in your system, but you have the
 [Python Interpreter](https://www.python.org) and the package `setuptools`
 (>=20.8.1) installed, you can try to install it from the sources, in this way:
 

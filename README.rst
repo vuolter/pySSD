@@ -11,9 +11,9 @@ Table of contents
 Description
 -----------
 
-A tiny, but effective, Solid-State Drive checker for Python.
+Tiny little Solid-State Drive checker for Python.
 
-Working on Windows, macOS and linux.
+Working on Windows, macOS and Linux.
 
 Installation
 ------------
