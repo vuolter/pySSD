@@ -6,7 +6,8 @@ import os
 import sys
 
 from glob import glob
-from os.path import basename, dirname, expanduser, ismount, realpath, splitdrive
+from os.path import (basename, dirname, expanduser, ismount, realpath, 
+                     splitdrive)
 
 MAJOR_DEVICE_IDS_IDE = (
     3, 22, 33, 34, 56, 57, 88, 89, 90, 91
@@ -25,13 +26,13 @@ def _get_parent_device_id(device_id):
     minor = os.minor(device_id)
 
     # For some device types, a block entry does not exist for partitions.
-    # The minor device ID of the "whole disk" entry is given by the upper N 
+    # The minor device ID of the "whole disk" entry is given by the upper N
     # bits of the partition minor device ID.
     #
     # Only SCSI and IDE devices are handled.
     #
     # https://www.kernel.org/doc/Documentation/admin-guide/devices.txt
-    
+
     if major in MAJOR_DEVICE_IDS_IDE:
         disk_id = minor >> 6
         minor = disk_id * 64
@@ -47,7 +48,7 @@ def _get_parent_device_id(device_id):
 def _blkdevice(path):
     device_id = _get_parent_device_id(os.stat(_fullpath(path)).st_dev)
     block = ""
-    
+
     for device in glob("/sys/class/block/*/dev"):
         if open(device).read().strip() == device_id:
             block = basename(dirname(device))
