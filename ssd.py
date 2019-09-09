@@ -107,7 +107,7 @@ def is_posix_ssd(path):
     path = '/sys/block/{0}/queue/rotational'.format(block)
     try:
         with open(path) as fp:
-            flag = bool(fp.read().strip())
+            flag = fp.read().strip() == "0"
 
     except (IOError, OSError):
         flag = False
