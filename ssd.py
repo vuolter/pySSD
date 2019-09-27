@@ -1,35 +1,57 @@
 # -*- coding: utf-8 -*-
 
-from __future__ import absolute_import
+from __future__ import absolute_import, division
 
 import os
 import sys
 
-from os.path import dirname, expanduser, ismount, realpath, splitdrive
+from glob import glob
+from os.path import (basename, dirname, expanduser, ismount, realpath, 
+                     splitdrive)
+
+MAJOR_DEVICE_IDS_IDE = (
+    3, 22, 33, 34, 56, 57, 88, 89, 90, 91
+)
+MAJOR_DEVICE_IDS_SCSI = (
+    8, 65, 66, 67, 68, 69, 70, 71, 128, 129, 130, 131, 132, 133, 134, 135
+)
 
 
 def _fullpath(path):
     return realpath(expanduser(path))
 
 
-def _mountpoint(path):
-    head = dirname(_fullpath(path))
-    while not ismount(head):
-        head = dirname(head)
-    return head
+def _get_parent_device_id(device_id):
+    major = os.major(device_id)
+    minor = os.minor(device_id)
+
+    # For some device types, a block entry does not exist for partitions.
+    # The minor device ID of the "whole disk" entry is given by the upper N
+    # bits of the partition minor device ID.
+    #
+    # Only SCSI and IDE devices are handled.
+    #
+    # https://www.kernel.org/doc/Documentation/admin-guide/devices.txt
+
+    if major in MAJOR_DEVICE_IDS_IDE:
+        disk_id = minor >> 6
+        minor = disk_id * 64
+    elif major in MAJOR_DEVICE_IDS_SCSI:
+        # SCSI devices
+        disk_id = minor >> 4
+        minor = disk_id * 16
+
+    device_id = "{0}:{1}".format(major, minor)
+    return device_id
 
 
 def _blkdevice(path):
-    import psutil
+    device_id = _get_parent_device_id(os.stat(_fullpath(path)).st_dev)
+    block = ""
 
-    partitions = psutil.disk_partitions()
-    mount = _mountpoint(path)
-
-    # if os.name == 'nt':
-        # mount = mount.upper()
-
-    device = next(dp.device for dp in partitions if dp.mountpoin == mount)
-    block = device.rsplit('/', 1)[-1]
+    for device in glob("/sys/class/block/*/dev"):
+        if open(device).read().strip() == device_id:
+            block = basename(dirname(device))
 
     return block
 
@@ -85,7 +107,7 @@ def is_posix_ssd(path):
     path = '/sys/block/{0}/queue/rotational'.format(block)
     try:
         with open(path) as fp:
-            flag = bool(fp.read().strip())
+            flag = fp.read().strip() == "0"
 
     except (IOError, OSError):
         flag = False
